@@ -86,6 +86,7 @@ class Register{
     }
     addAffair(affair:Affair)
     {
+        
         pop.this.affairList(affair);
         console.log("Affair added");
     }
