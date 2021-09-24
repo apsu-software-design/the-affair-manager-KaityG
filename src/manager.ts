@@ -1,6 +1,7 @@
 //your code goes here!
 //import List library
-var List = requre("collections/list");
+var List = require("collections/list");
+var Map = require("collections/map");
 
 
 /**
@@ -61,6 +62,16 @@ class Affair{
 
 }
 
+//Affair Manager
+class AffairManager{
+    findMembersName(){
+
+    }
+    fineAffairName(){}
+    findOrganizationName(){}
+    getMembersFromAffair(){}
+}
+
 /**
  * Register class
  * -----------------------------
@@ -106,14 +117,9 @@ class Register{
     }
     search(elementName:string)
     {
-        //for members
-       if(elementName == memberList.getMemberName()){
-           console.log(memberList.getName() + " " + memberlist.get)
+           if(elementName == listName){
+               return true;
        }
-
-       //for affairs
-
-       //for orgs
     }
 
 
