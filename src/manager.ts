@@ -74,19 +74,21 @@ class Register{
     let organizationList = new List();
     let membersInAffairList = new List();
 
-    addMember(member:Member)
+    addMember(name:string, email:string)
     {
+        Member member = new Member(name, email);
         pop.this.memberList(member);
         console.log("Member added");
     }
-    addOrganization(organization:Organization)
+    addOrganization(name:string)
     {
+        Organization member = new Organization(name);
         pop.this.organization(organization);
         console.log("Organization added");
     }
-    addAffair(affair:Affair)
+    addAffair(name:string, date:string, zipcode:string)
     {
-        
+        Affair affair = new Affair(name, date, zipcode)   
         pop.this.affairList(affair);
         console.log("Affair added");
     }
@@ -101,6 +103,17 @@ class Register{
         //search and return affair using affairName
         affair.setAffairName(newTitle);
         affair.setAffairDate(newTime);
+    }
+    search(elementName:string)
+    {
+        //for members
+       if(elementName == memberList.getMemberName()){
+           console.log(memberList.getName() + " " + memberlist.get)
+       }
+
+       //for affairs
+
+       //for orgs
     }
 
 
