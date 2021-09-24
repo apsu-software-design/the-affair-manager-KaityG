@@ -21,6 +21,7 @@ class Member{
     setMemberName(newName:string){this.name = name;}
     getMemberEmail(){return this.email;}
     setMemberEmail(newEmail:string){this.email = newEmail;}
+    addMemberToMemberList(member:Member)
 }
 
 /**
@@ -45,13 +46,15 @@ class Organization{
  * creates affair object
  * gets and sets name, date and zipcode
  * */
-class Affair{
-    constructor(name:string, date:string, zipcode:string)
+class Affair extends Member { 
+    constructor(name:string, date:string, zipcode:string, memberList:Member)
     {
         this.name = name;
         this.date = date;
         this.zipcode = zipcode;
+        this.memberList = new Member();
     }
+
 
     getAffairName(){return this.name;}
     getAffairDate(){return this.date;}
@@ -59,17 +62,54 @@ class Affair{
     setAffairName(newName:string){this.name = newName;}
     setAffairDate(newDate:string){this.date = newDate;}
     setAffairZipcode(newZipcode:string){this.zipcode = newZipcode;}
+    getMembers(){
+        console.log( "Member: " + Member.getName() + " Email: " + Member.getEmail()
+    }
 
+}
+
+class Affairs{
+    constructor(affairList: Affair)
+    {
+        affairList = new Affair();
+
+    }
+
+    modifyAffair(affairName:string, newTitle:string, newTime:string)
+    {
+        //search and return affair using affairName
+        affair.setAffairName(newTitle);
+        affair.setAffairDate(newTime);
+    }
+    
 }
 
 //Affair Manager
 class AffairManager{
-    findMembersName(){
+
+    //created affairList
+    constructor(affair:AffairManager)
+    {
+        this.affair = new AffairManager()
+    }
+
+    
+    addAffair(){}
+    addOrganization(){}
+    addMembersToAffair(){}
+    modifyAffair(){}
+    addAffairToOrganization(){}
+    findMembersName(name:string){
+        search(name);
 
     }
-    fineAffairName(){}
-    findOrganizationName(){}
-    getMembersFromAffair(){}
+    findAffairName(name:string){
+        search(name);
+    }
+    findOrganizationName(name:string){
+        search(name);
+    }
+    getMembersFromAffair(name:string){}
 }
 
 /**
@@ -109,12 +149,6 @@ class Register{
         pop.this.membersInAffairList(member);
     }
 
-    modifyAffair(affairName:string, newTitle:string, newTime:string)
-    {
-        //search and return affair using affairName
-        affair.setAffairName(newTitle);
-        affair.setAffairDate(newTime);
-    }
     search(elementName:string)
     {
            if(elementName == listName){
