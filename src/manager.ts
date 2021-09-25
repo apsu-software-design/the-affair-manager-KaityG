@@ -34,7 +34,7 @@ class Member{
 class Organization{
     constructor(name:string){
         this.name = name;
-        this.affairList = new Affair();
+        this.affairList = new List();
     }
     getOrgName(){return name;}
     setOrgName(newName:string){this.name = newName;}
@@ -53,7 +53,7 @@ class Affair extends Member {
         this.name = name;
         this.date = date;
         this.zipcode = zipcode;
-        this.memberList = new Member();
+        this.memberList = new List();
     }
 
 
