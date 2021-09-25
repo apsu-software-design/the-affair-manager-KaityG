@@ -17,11 +17,10 @@ class Member{
         this.name = name;
         this.email = email;
     }
-    getMemberName(){return this.name;}
+    getName(){return this.name;}
     setMemberName(newName:string){this.name = name;}
     getMemberEmail(){return this.email;}
     setMemberEmail(newEmail:string){this.email = newEmail;}
-    addMemberToMemberList(member:Member)
 }
 
 /**
@@ -31,13 +30,17 @@ class Member{
  * creates organization object
  * gets and sets name
  * */
-class Organization{
+class Organization extends Affair{
     constructor(name:string){
         this.name = name;
         this.affairList = new List();
     }
-    getOrgName(){return name;}
+    getName(){return name;}
     setOrgName(newName:string){this.name = newName;}
+    addAffairToList(affair:Affair)
+    {
+        pop.affairList(affair);
+    }
 }
 
 /**
@@ -53,28 +56,43 @@ class Affair extends Member {
         this.name = name;
         this.date = date;
         this.zipcode = zipcode;
-        this.memberList = new List();
+        this.membersOfAffairList = new List();
     }
 
 
-    getAffairName(){return this.name;}
+    getName(){return this.name;}
     getAffairDate(){return this.date;}
     getAffairZipcode(){return this.zipcode;}
     setAffairName(newName:string){this.name = newName;}
     setAffairDate(newDate:string){this.date = newDate;}
     setAffairZipcode(newZipcode:string){this.zipcode = newZipcode;}
+    displayMembers(member:Member)
+    {
+        return member.getName() + " " + member.getMemberEmail();
+    }
+    getMembers(){
+        membersOfAffairList.forEach(displayMembers);
+    }
+
+    addMemberToList(member:Member){
+        pop.membersOfAffairList(member);
+    }
 
 }
 
 //Affair Manager
 class AffairManager{
+
+
+    Affair affairObject = new Affair();
+    Member memberObject = new Member ();
+    Organization orgObject = new Organization();
+
     let memberList = new List();
 
     let affairList = new List();
 
     let orgList = new List();
-
-
 
     addMember(name:string, email:string)
     {
@@ -87,49 +105,61 @@ class AffairManager{
         pop.affairList(affair);
 
     }
+
     addOrganization(name:string){
         Organization organization = new Organization(name);
         pop.orgList(organization);
     }
-    addMembersToAffair(memName:string, affairName:string){
-        search(memName);
-        
 
+    addMembersToAffair(memName:string, affairName:string){
+        affairObject = affairList.map(search, affairName);
+        memberObject = memberList.map(search, memName);
+
+        affairObject.addMemberToList(member);
 
     }
+
     modifyAffair(affairName:string, newTitle:string, newTime:string)
     {
-        affairList.forEach(search, afffairName);
+        affairObject = affairList.map(search, affairName);
 
-        affair.setAffairName(newTitle);
-        affair.setAffairDate(newTime);
+        affairObject.setAffairName(newTitle);
+        affairObject.setAffairDate(newTime);
     }
-    addAffairToOrganization(){}
+
+    addAffairToOrganization(affairName:string){
+        affairObject = affairList.map(search, name)
+        affairObject.addAffairToList(affairObject);
+    }
+
     findMembersName(name:string){
-        let member:string;
-
-        member = memberList.map(search, name);
-      
-        
+        memberObject = memberList.map(search, name);
+        return(memberObject.getName() + " " + memberObject.getMemberEmail());
 
     }
+
     findAffairName(name:string){
-        let affair
-        affairList.forEach(search, name);
+        affairObject = memberList.map(search, name);
+        return(affairObjet.getName() + " " + affairObject.getAffairZipcode() + " " + affairObject.getAffairDate());
 
     }
+
     findOrganizationName(name:string){
-        organizationList.forEach(search, name);
+        memberObject = memberList.map(search, name);
+        return(memberObject.getName());
     }
-    getMembersFromAffair(name:string){}
 
-    search(listItem:string, name:string)
+    getMembersFromAffair(name:string){
+        affairObject = affairList.map(search, name);
+        affairObject.getMembers();
+    }
+
+    search(object:Object, name:string)
     {
-        if(listItem = name){
-        return name;
+        if(object.getName() == name){
+        return object;
         }
-        else
-        {return "not found";}
+        return "not found";
     }
 }
 
