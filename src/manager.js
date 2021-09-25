@@ -16,7 +16,6 @@ var __extends = (this && this.__extends) || (function () {
 //your code goes here!
 //import List library
 var List = require("collections/list");
-var Map = require("collections/map");
 /**
  * Member class
  * -----------------------------
@@ -95,11 +94,11 @@ var Affair = /** @class */ (function (_super) {
 var AffairManager = /** @class */ (function () {
     function AffairManager() {
         Affair;
-        affairObject = new Affair();
+        affairObject;
         Member;
-        memberObject = new Member();
+        memberObject;
         Organization;
-        orgObject = new Organization();
+        orgObject;
         List;
         memberList = new List();
         List;
