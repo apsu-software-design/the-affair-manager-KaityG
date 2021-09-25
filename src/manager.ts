@@ -74,6 +74,8 @@ class AffairManager{
 
     let orgList = new List();
 
+
+
     addMember(name:string, email:string)
     {
         Member member = new Member(name, email);
@@ -91,30 +93,43 @@ class AffairManager{
     }
     addMembersToAffair(memName:string, affairName:string){
         search(memName);
+        
 
 
     }
     modifyAffair(affairName:string, newTitle:string, newTime:string)
     {
-        //search and return affair using affairName
+        affairList.forEach(search, afffairName);
+
         affair.setAffairName(newTitle);
         affair.setAffairDate(newTime);
     }
     addAffairToOrganization(){}
     findMembersName(name:string){
-        search(name);
+        let member:string;
+
+        member = memberList.map(search, name);
+      
+        
 
     }
     findAffairName(name:string){
-        search(name);
+        let affair
+        affairList.forEach(search, name);
+
     }
     findOrganizationName(name:string){
-        search(name);
+        organizationList.forEach(search, name);
     }
     getMembersFromAffair(name:string){}
 
-    search(){
-        
+    search(listItem:string, name:string)
+    {
+        if(listItem = name){
+        return name;
+        }
+        else
+        {return "not found";}
     }
 }
 
