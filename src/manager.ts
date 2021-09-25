@@ -1,7 +1,6 @@
 //your code goes here!
 //import List library
 var List = require("collections/list");
-var Map = require("collections/map");
 
 
 /**
@@ -81,34 +80,35 @@ class Affair extends Member {
 }
 
 //Affair Manager
-class AffairManager{
+class AffairManager {
 
+    constructor(){
+        Affair affairObject;
+        Member memberObject;
+        Organization orgObject;
 
-    Affair affairObject = new Affair();
-    Member memberObject = new Member ();
-    Organization orgObject = new Organization();
+        List memberList = new List();
 
-    let memberList = new List();
+        List affairList = new List();
 
-    let affairList = new List();
-
-    let orgList = new List();
+        List orgList = new List();
+    }
 
     addMember(name:string, email:string)
     {
-        Member member = new Member(name, email);
-        pop.memberList(member);
+        memberObject = new Member(name, email);
+        pop.memberList(memberObject);
     }
     
     addAffair(name:string, zipcode:string, date:string){
-        Affair affair = new Affair(name, zipcode, date);
-        pop.affairList(affair);
+        affairObject = new Affair(name, zipcode, date);
+        pop.affairList(affairObject);
 
     }
 
     addOrganization(name:string){
-        Organization organization = new Organization(name);
-        pop.orgList(organization);
+        orgObject = new Organization(name);
+        pop.orgList(orgObject);
     }
 
     addMembersToAffair(memName:string, affairName:string){
