@@ -34,6 +34,7 @@ class Member{
 class Organization{
     constructor(name:string){
         this.name = name;
+        this.affairList = new Affair();
     }
     getOrgName(){return name;}
     setOrgName(newName:string){this.name = newName;}
@@ -62,42 +63,43 @@ class Affair extends Member {
     setAffairName(newName:string){this.name = newName;}
     setAffairDate(newDate:string){this.date = newDate;}
     setAffairZipcode(newZipcode:string){this.zipcode = newZipcode;}
-    getMembers(){
-        console.log( "Member: " + Member.getName() + " Email: " + Member.getEmail()
-    }
 
 }
 
-class Affairs{
-    constructor(affairList: Affair)
+//Affair Manager
+class AffairManager{
+    let memberList = new List();
+
+    let affairList = new List();
+
+    let orgList = new List();
+
+    addMember(name:string, email:string)
     {
-        affairList = new Affair();
+        Member member = new Member(name, email);
+        pop.memberList(member);
+    }
+    
+    addAffair(name:string, zipcode:string, date:string){
+        Affair affair = new Affair(name, zipcode, date);
+        pop.affairList(affair);
 
     }
+    addOrganization(name:string){
+        Organization organization = new Organization(name);
+        pop.orgList(organization);
+    }
+    addMembersToAffair(memName:string, affairName:string){
+        search(memName);
 
+
+    }
     modifyAffair(affairName:string, newTitle:string, newTime:string)
     {
         //search and return affair using affairName
         affair.setAffairName(newTitle);
         affair.setAffairDate(newTime);
     }
-    
-}
-
-//Affair Manager
-class AffairManager{
-
-    //created affairList
-    constructor(affair:AffairManager)
-    {
-        this.affair = new AffairManager()
-    }
-
-    
-    addAffair(){}
-    addOrganization(){}
-    addMembersToAffair(){}
-    modifyAffair(){}
     addAffairToOrganization(){}
     findMembersName(name:string){
         search(name);
@@ -110,54 +112,12 @@ class AffairManager{
         search(name);
     }
     getMembersFromAffair(name:string){}
+
+    search(){
+        
+    }
 }
 
-/**
- * Register class
- * -----------------------------
- * fields: name, email
- * a member object
- * gets and sets name and email
- * */
-class Register{
-    let memberList = new List();
-    let affairList = new List();
-    let organizationList = new List();
-    let membersInAffairList = new List();
-
-    addMember(name:string, email:string)
-    {
-        Member member = new Member(name, email);
-        pop.this.memberList(member);
-        console.log("Member added");
-    }
-    addOrganization(name:string)
-    {
-        Organization member = new Organization(name);
-        pop.this.organization(organization);
-        console.log("Organization added");
-    }
-    addAffair(name:string, date:string, zipcode:string)
-    {
-        Affair affair = new Affair(name, date, zipcode)   
-        pop.this.affairList(affair);
-        console.log("Affair added");
-    }
-    
-    addMemberToAffair(affairName:string, member:Member){
-        //put search function to return the correct affair
-        pop.this.membersInAffairList(member);
-    }
-
-    search(elementName:string)
-    {
-           if(elementName == listName){
-               return true;
-       }
-    }
-
-
-}
 
 
 
