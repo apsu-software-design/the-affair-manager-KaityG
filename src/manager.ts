@@ -83,15 +83,15 @@ class Affair extends Member {
 class AffairManager {
 
     constructor(){
-        Affair affairObject;
-        Member memberObject;
-        Organization orgObject;
+        let affairObject;
+        let memberObject;
+        let orgObject;
 
-        List memberList = new List();
+        let memberList = new List();
 
-        List affairList = new List();
+        let affairList = new List();
 
-        List orgList = new List();
+        let orgList = new List();
     }
 
     addMember(name:string, email:string)
