@@ -93,18 +93,12 @@ var Affair = /** @class */ (function (_super) {
 //Affair Manager
 var AffairManager = /** @class */ (function () {
     function AffairManager() {
-        Affair;
-        affairObject;
-        Member;
-        memberObject;
-        Organization;
-        orgObject;
-        List;
-        memberList = new List();
-        List;
-        affairList = new List();
-        List;
-        orgList = new List();
+        var affairObject;
+        var memberObject;
+        var orgObject;
+        var memberList = new List();
+        var affairList = new List();
+        var orgList = new List();
     }
     AffairManager.prototype.addMember = function (name, email) {
         memberObject = new Member(name, email);
