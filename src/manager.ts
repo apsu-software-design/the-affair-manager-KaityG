@@ -78,7 +78,15 @@ class Affair extends Member {
     }
 
 }
+        var affairObject;
+        var memberObject;
+        var orgObject;
 
+        List memberList = new List();
+
+        List affairList = new List();
+
+        List orgList = new List();
 //Affair Manager
 class AffairManager {
 
