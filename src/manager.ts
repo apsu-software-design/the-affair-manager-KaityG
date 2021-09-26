@@ -38,7 +38,7 @@ class Organization extends Affair{
     setOrgName(newName:string){this.name = newName;}
     addAffairToList(affair:Affair)
     {
-        pop.affairList(affair);
+        push.affairList(affair);
     }
 }
 
@@ -70,11 +70,11 @@ class Affair extends Member {
         return member.getName() + " " + member.getMemberEmail();
     }
     getMembers(){
-        membersOfAffairList.forEach(displayMembers);
+        this.membersOfAffairList.forEach(this.displayMembers);
     }
 
     addMemberToList(member:Member){
-        pop.membersOfAffairList(member);
+        push.membersOfAffairList(member);
     }
 
 }
@@ -100,20 +100,20 @@ class AffairManager {
     
     addAffair(name:string, zipcode:string, date:string){
         affairObject = new Affair(name, zipcode, date);
-        pop.affairList(affairObject);
+        push.affairList(affairObject);
 
     }
 
     addOrganization(name:string){
         orgObject = new Organization(name);
-        pop.orgList(orgObject);
+        push.orgList(orgObject);
     }
 
     addMembersToAffair(memName:string, affairName:string){
         affairObject = affairList.map(search, affairName);
         memberObject = memberList.map(search, memName);
 
-        affairObject.addMemberToList(member);
+        affairObject.addMemberToList(memberObject);
 
     }
 
@@ -138,7 +138,7 @@ class AffairManager {
 
     findAffairName(name:string){
         affairObject = memberList.map(search, name);
-        return(affairObjet.getName() + " " + affairObject.getAffairZipcode() + " " + affairObject.getAffairDate());
+        return(affairObject.getName() + " " + affairObject.getAffairZipcode() + " " + affairObject.getAffairDate());
 
     }
 
