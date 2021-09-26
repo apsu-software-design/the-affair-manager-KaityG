@@ -50,7 +50,7 @@ class Organization extends Affair{
  * gets and sets name, date and zipcode
  * */
 class Affair extends Member { 
-    constructor(name:string, date:string, zipcode:string, memberList:Member)
+    constructor(name:string, date:string, zipcode:string)
     {
         this.name = name;
         this.date = date;
