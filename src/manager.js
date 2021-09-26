@@ -52,7 +52,7 @@ var Organization = /** @class */ (function (_super) {
     Organization.prototype.getName = function () { return name; };
     Organization.prototype.setOrgName = function (newName) { this.name = newName; };
     Organization.prototype.addAffairToList = function (affair) {
-        pop.affairList(affair);
+        push.affairList(affair);
     };
     return Organization;
 }(Affair));
@@ -83,10 +83,10 @@ var Affair = /** @class */ (function (_super) {
         return member.getName() + " " + member.getMemberEmail();
     };
     Affair.prototype.getMembers = function () {
-        membersOfAffairList.forEach(displayMembers);
+        this.membersOfAffairList.forEach(this.displayMembers);
     };
     Affair.prototype.addMemberToList = function (member) {
-        pop.membersOfAffairList(member);
+        push.membersOfAffairList(member);
     };
     return Affair;
 }(Member));
@@ -106,16 +106,16 @@ var AffairManager = /** @class */ (function () {
     };
     AffairManager.prototype.addAffair = function (name, zipcode, date) {
         affairObject = new Affair(name, zipcode, date);
-        pop.affairList(affairObject);
+        push.affairList(affairObject);
     };
     AffairManager.prototype.addOrganization = function (name) {
         orgObject = new Organization(name);
-        pop.orgList(orgObject);
+        push.orgList(orgObject);
     };
     AffairManager.prototype.addMembersToAffair = function (memName, affairName) {
         affairObject = affairList.map(search, affairName);
         memberObject = memberList.map(search, memName);
-        affairObject.addMemberToList(member);
+        affairObject.addMemberToList(memberObject);
     };
     AffairManager.prototype.modifyAffair = function (affairName, newTitle, newTime) {
         affairObject = affairList.map(search, affairName);
@@ -132,7 +132,7 @@ var AffairManager = /** @class */ (function () {
     };
     AffairManager.prototype.findAffairName = function (name) {
         affairObject = memberList.map(search, name);
-        return (affairObjet.getName() + " " + affairObject.getAffairZipcode() + " " + affairObject.getAffairDate());
+        return (affairObject.getName() + " " + affairObject.getAffairZipcode() + " " + affairObject.getAffairDate());
     };
     AffairManager.prototype.findOrganizationName = function (name) {
         memberObject = memberList.map(search, name);
