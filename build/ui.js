@@ -1,15 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.start = void 0;
-var readlineSync = require("readline-sync");
+const readlineSync = require("readline-sync");
 function start() {
     showMainMenu(new AffairManager());
 }
 exports.start = start;
 function showMainMenu(em) {
     while (true) {
-        console.log("Welcome to the Affair Manager! Pick an option:\n  1. Register a new member\n  2. Register a new affair\n  3. Register a new organization\n  4. Add a member to an affair\n  5. Modify an affair\n  6. Add an affair to an organization\n  7. List affair members\n  8. Exit");
-        var response = readlineSync.question('> ');
+        console.log(`Welcome to the Affair Manager! Pick an option:
+  1. Register a new member
+  2. Register a new affair
+  3. Register a new organization
+  4. Add a member to an affair
+  5. Modify an affair
+  6. Add an affair to an organization
+  7. List affair members
+  8. Exit`);
+        let response = readlineSync.question('> ');
         if (response === '8' || response.slice(0, 2).toLowerCase() === ':q') {
             break;
         }
@@ -42,24 +50,24 @@ function showMainMenu(em) {
 }
 function showNewMemberMenu(em) {
     console.log('Add a new member.');
-    var name = readlineSync.question('  Name: ');
-    var email = readlineSync.question('  Email: ');
+    let name = readlineSync.question('  Name: ');
+    let email = readlineSync.question('  Email: ');
     em.addMember(name, email);
     console.log('User added!');
 }
 function showNewAffairMenu(em) {
     console.log('Add a new affair.');
-    var affairName = readlineSync.question('  Title of affair: ');
-    var zipcode = readlineSync.question('  Location (zip code): ');
-    var date = readlineSync.question('  Date and time (ex: Jan 21 2017 13:00 PST): ');
+    let affairName = readlineSync.question('  Title of affair: ');
+    let zipcode = readlineSync.question('  Location (zip code): ');
+    let date = readlineSync.question('  Date and time (ex: Jan 21 2017 13:00 PST): ');
     em.addAffair(affairName, zipcode, date);
     showAddToAffairMenu(em, affairName);
 }
 function showNewOrganizationMenu(em) {
     console.log('Add a new organization.');
-    var organizationName = readlineSync.question('  Title of organization: ');
+    let organizationName = readlineSync.question('  Title of organization: ');
     em.addOrganization(organizationName);
-    var adding = readlineSync.question('Add affairs to organization? (y/n): ');
+    let adding = readlineSync.question('Add affairs to organization? (y/n): ');
     while (adding.toLowerCase().startsWith('y')) {
         showAddToOrganizationMenu(em, organizationName);
         adding = readlineSync.question('Add another affair? (y/n): ');
@@ -72,9 +80,9 @@ function showAddToAffairMenu(em, affairName) {
             return;
         }
     }
-    var adding = readlineSync.question('Add a member to affair? (y/n): ');
+    let adding = readlineSync.question('Add a member to affair? (y/n): ');
     while (adding.toLowerCase().startsWith('y')) {
-        var memberName = showSearchMembersMenu(em);
+        let memberName = showSearchMembersMenu(em);
         if (memberName) {
             em.addMemberToAffair(memberName, affairName);
         }
@@ -85,27 +93,27 @@ function showAddToAffairMenu(em, affairName) {
     }
 }
 function showSearchMembersMenu(em) {
-    var query = _promptForQuery('member');
+    let query = _promptForQuery('member');
     return _searchListMenu('member', em.findMemberNames(query));
 }
 function showSearchAffairsMenu(em) {
-    var query = _promptForQuery('affair');
+    let query = _promptForQuery('affair');
     return _searchListMenu('affair', em.findAffairNames(query));
 }
 function showSearchOrganizationsMenu(em) {
-    var query = _promptForQuery('organization');
+    let query = _promptForQuery('organization');
     return _searchListMenu('organization', em.findOrganizationNames(query));
 }
 function _promptForQuery(type) {
-    console.log("Searching for a " + type + ".");
+    console.log(`Searching for a ${type}.`);
     return readlineSync.question('Search query: ');
 }
 function _searchListMenu(type, results) {
     if (results.length > 0) {
         console.log('Results found: ');
-        var resultsDisplay = '  ' + (results.map(function (item, idx) { return idx + 1 + ". " + item; }).join('\n  '));
+        let resultsDisplay = '  ' + (results.map((item, idx) => `${idx + 1}. ${item}`).join('\n  '));
         console.log(resultsDisplay);
-        var choiceIdx = parseInt(readlineSync.question("Choose a " + type + " (1-" + results.length + "): "));
+        let choiceIdx = parseInt(readlineSync.question(`Choose a ${type} (1-${results.length}): `));
         return results[choiceIdx - 1];
     }
     else {
@@ -121,14 +129,18 @@ function showModifyAffairMenu(em, affairName) {
         }
     }
     while (true) {
-        console.log("Edit affair '" + affairName + "'.\n  1. Change title\n  2. Change time\n  3. Add to organization\n  4. Return to previous menu");
-        var response = parseInt(readlineSync.question('> '));
+        console.log(`Edit affair '${affairName}'.
+  1. Change title
+  2. Change time
+  3. Add to organization
+  4. Return to previous menu`);
+        let response = parseInt(readlineSync.question('> '));
         if (response == 1) {
-            var newTitle = readlineSync.question('  New title: ');
+            let newTitle = readlineSync.question('  New title: ');
             em.modifyAffair(affairName, newTitle);
         }
         else if (response == 2) {
-            var newTime = readlineSync.question('  New date and time (ex: Jan 21 2017 13:00 PST): ');
+            let newTime = readlineSync.question('  New date and time (ex: Jan 21 2017 13:00 PST): ');
             em.modifyAffair(affairName, undefined, newTime);
         }
         else if (response == 3) {
@@ -158,8 +170,8 @@ function showAddToOrganizationMenu(em, organizationName, affairName) {
     em.addAffairToOrganization(affairName, organizationName);
 }
 function showListAffairMembersMenu(em) {
-    var affairName = showSearchAffairsMenu(em);
-    var members = em.getMembers(affairName);
+    let affairName = showSearchAffairsMenu(em);
+    let members = em.getMembers(affairName);
     console.log('Members participating in this action:');
     console.log('  ' + members.join('\n  ') + '\n');
     readlineSync.keyInPause('(Press any letter to continue)', { guide: false });
