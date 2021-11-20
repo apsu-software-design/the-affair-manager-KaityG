@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.start = void 0;
 const readlineSync = require("readline-sync");
-const manager_1 = require("manager");
+const manager_1 = require("./manager");
 function start() {
     showMainMenu(new manager_1.AffairManager());
 }
@@ -138,7 +138,7 @@ function showModifyAffairMenu(em, affairName) {
         let response = parseInt(readlineSync.question('> '));
         if (response == 1) {
             let newTitle = readlineSync.question('  New title: ');
-            em.modifyAffair(affairName, newTitle);
+            em.modifyAffair(affairName, newTitle, undefined);
         }
         else if (response == 2) {
             let newTime = readlineSync.question('  New date and time (ex: Jan 21 2017 13:00 PST): ');
