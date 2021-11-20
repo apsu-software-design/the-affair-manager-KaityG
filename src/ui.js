@@ -5,7 +5,7 @@
 exports.__esModule = true;
 exports.start = void 0;
 var readlineSync = require("readline-sync"); //for easier repeated prompts
-var manager_1 = require("./manager");
+var manager_1 = require("manager");
 /**
  * Function to run the UI
  */
