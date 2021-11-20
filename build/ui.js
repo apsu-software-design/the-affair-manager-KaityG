@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.start = void 0;
 const readlineSync = require("readline-sync");
+const manager_1 = require("manager");
 function start() {
-    showMainMenu(new AffairManager());
+    showMainMenu(new manager_1.AffairManager());
 }
 exports.start = start;
 function showMainMenu(em) {
