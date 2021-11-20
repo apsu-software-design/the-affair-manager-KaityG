@@ -1,4 +1,4 @@
-public class Member{
+class Member{
     private memberName: string;
     private memberEmail: string;
 
@@ -15,7 +15,8 @@ public class Member{
     
 }
 
-public class Members{
+class Members
+{
     private membersList: Member[];
     private memberListSize: number;
 
@@ -30,15 +31,24 @@ public class Members{
         this.memberListSize = this.membersList.push(member);
     }
 
-    public getMember():Member
+    public getMember(name:string):Member
     {
-        for member in this.
+        let i:number;
+        for (i = 0; i < this.memberListSize; i++)
+        {
+            if (this.membersList[i].getName() == name)
+            {
+                return this.membersList[i];
+            }
+        }
+        
+        return null;
     }
     public getMemberList(): Member[]{return this.membersList;}
 
 }
 
-public class Affair
+class Affair
 {
     private affairName: string;
     private zipcode: string;
@@ -48,8 +58,8 @@ public class Affair
 
     constructor(name:string, zipcode: string, date:string)
     {
-        this.memberName = name;
-        this.memberEmail = zipcode;
+        this.affairName = name;
+        this.zipcode = zipcode;
         this.date = date;
         this.membersSize = 0;
         this.members = [];
@@ -57,7 +67,7 @@ public class Affair
 
     public getName(): string {return this.affairName;}
 
-    public setMemberName(name: string): void {this.memberName = name;}
+    public setAffairName(name: string): void {this.affairName = name;}
 
     public setZipcode(zipcode:string): void{this.zipcode = zipcode;}
 
@@ -77,19 +87,20 @@ public class Affair
 
         for(i; i < this.membersSize; i++)
         {
-            membersName.push(this.members[i].getName()));
+            membersName.push(this.members[i].getName());
         }
        
-       return this.members;
+       return membersName;
     }
+}
 
-public class Affairs{
+class Affairs{
     private affairs: Affair[];
     private affairSize: number;
 
     constructor()
     {
-        this.affairList = [];
+        this.affairs = [];
         this.affairSize = 0;
     }
 
@@ -105,7 +116,7 @@ public class Affairs{
 
 }
 
-public class Organization
+class Organization
 {
     private orgName: string;
     private affairs: Affair [];
@@ -124,7 +135,7 @@ public class Organization
     public addAffairToOrg(affair: Affair){this.affairSize = this.affairs.push(affair);}
 }
 
-public class Organizations
+class Organizations
 {
     private orgList: Organization[];
     private orgSize: number;
@@ -132,7 +143,7 @@ public class Organizations
     constructor()
     {
         this.orgList = [];
-        this.orgList = 0;
+        this.orgSize = 0;
     }
 
     public getOrgList():Organization[] {return this.orgList;}
@@ -147,42 +158,45 @@ export class AffairManager
 
     constructor()
     {
-        affairs = new Affairs;
-        members = new Members;
-        orgs = new Organizations;
+        this.affairs = new Affairs;
+        this.members = new Members;
+        this.orgs = new Organizations;
     }
 
     public addMembers(memberName:string, memberEmail: string) : void
     {
-        let member = Member(memberName, memberEmail);
+        let member = new Member(memberName, memberEmail);
         this.members.addMemberToList(member);
     }
 
     public addAffair(affairName:string, zipcode: string, date: string): void
     {
-        let affair = Affair(affairName, zipcode, date);
-        this.affairs.addAffairToList.(affair);
+        let affair = new Affair(affairName, zipcode, date);
+        this.affairs.addAffairToList(affair);
     }
 
     public addOrganization(orgName: string): void
     {
-        let org = Organization(orgName);
+        let org = new Organization(orgName);
         this.orgs.addOrgToList(org);
     }
 
     public findMemberNames(query: string) : string[]
     {
-        search(query, members);
+        let memberArray = this.search(query, this.members);
+        return memberArray;
     }
 
     public findOrganizationNames(query: string) : string[]
     {
-        search(query, orgs);
+        let orgArray = this.search(query, this.orgs);
+        return orgArray;
     }
 
     public findAffairNames(query: string) : string[]
     {
-        search(query, affairs);
+        let affairArray = this.search(query, this.affairs);
+        return affairArray;
     }
 
     public modifyAffair(affairName: string, newTitle: string, newTime: string): void
@@ -193,15 +207,15 @@ export class AffairManager
         }
     }
 
-    function search(searchName:string, array:any):any{
+    private search(searchName:string, array:any):any{
         let filteredArray = array.filter(function(element: any) {element.getName() == searchName;});
-        return filteredArray;      
-
+        return filteredArray;  
     }   
+  
 
     public addAffairToOrganization(affairName: string, orgName: string): void
     {
-        let affair: Affair:
+        let affair: Affair;
         let org: Organization;
 
         org.addAffairToOrg(affair);
@@ -209,7 +223,7 @@ export class AffairManager
 
     public getMembers(affairName: string)
     {
-        affair.getAffairs();
+        this.affairs.getAffairs();
     }
 }
 
