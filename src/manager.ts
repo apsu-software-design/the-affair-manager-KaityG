@@ -109,6 +109,10 @@ class Affairs{
         this.affairSize = this.affairs.push(affair);
     }
 
+    public getAffairSize()
+    {
+        return this.affairSize;
+    }
     public getAffairs(): Affair[]
     {
         return this.affairs;
@@ -158,12 +162,12 @@ export class AffairManager
 
     constructor()
     {
-        this.affairs = new Affairs;
-        this.members = new Members;
-        this.orgs = new Organizations;
+        this.affairs = new Affairs();
+        this.members = new Members();
+        this.orgs = new Organizations();
     }
 
-    public addMembers(memberName:string, memberEmail: string) : void
+    public addMember(memberName:string, memberEmail: string) : void
     {
         let member = new Member(memberName, memberEmail);
         this.members.addMemberToList(member);
@@ -181,6 +185,10 @@ export class AffairManager
         this.orgs.addOrgToList(org);
     }
 
+    public addMemberToAffair(memberName:string, affairName:string): void
+    {
+        
+    }
     public findMemberNames(query: string) : string[]
     {
         let memberArray = this.search(query, this.members);
@@ -207,7 +215,7 @@ export class AffairManager
         }
     }
 
-    private search(searchName:string, array:any):any{
+    private search(searchName:string, array:any[]):any[]{
         let filteredArray = array.filter(function(element: any) {element.getName() == searchName;});
         return filteredArray;  
     }   
@@ -221,9 +229,23 @@ export class AffairManager
         org.addAffairToOrg(affair);
     }
 
-    public getMembers(affairName: string)
+    public getMembers(affairName: string):string[]
     {
-        this.affairs.getAffairs();
+        let i:number = 0;
+        let affair:Affair;
+
+        for(i; i < this.affairs.getAffairSize(); i++)
+        {
+            if(this.affairs[i].getName() == affairName)
+            {
+                affair = this.affairs[i];
+            }
+        }
+
+        let members:string[];
+        members = affair.getMembersFromAffair();
+        
+        return members;
     }
 }
 

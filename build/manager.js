@@ -63,6 +63,9 @@ class Affairs {
     addAffairToList(affair) {
         this.affairSize = this.affairs.push(affair);
     }
+    getAffairSize() {
+        return this.affairSize;
+    }
     getAffairs() {
         return this.affairs;
     }
@@ -88,11 +91,11 @@ class Organizations {
 }
 class AffairManager {
     constructor() {
-        this.affairs = new Affairs;
-        this.members = new Members;
-        this.orgs = new Organizations;
+        this.affairs = new Affairs();
+        this.members = new Members();
+        this.orgs = new Organizations();
     }
-    addMembers(memberName, memberEmail) {
+    addMember(memberName, memberEmail) {
         let member = new Member(memberName, memberEmail);
         this.members.addMemberToList(member);
     }
@@ -103,6 +106,8 @@ class AffairManager {
     addOrganization(orgName) {
         let org = new Organization(orgName);
         this.orgs.addOrgToList(org);
+    }
+    addMemberToAffair(memberName, affairName) {
     }
     findMemberNames(query) {
         let memberArray = this.search(query, this.members);
@@ -130,7 +135,16 @@ class AffairManager {
         org.addAffairToOrg(affair);
     }
     getMembers(affairName) {
-        this.affairs.getAffairs();
+        let i = 0;
+        let affair;
+        for (i; i < this.affairs.getAffairSize(); i++) {
+            if (this.affairs[i].getName() == affairName) {
+                affair = this.affairs[i];
+            }
+        }
+        let members;
+        members = affair.getMembersFromAffair();
+        return members;
     }
 }
 exports.AffairManager = AffairManager;

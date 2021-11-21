@@ -5,7 +5,7 @@
 exports.__esModule = true;
 exports.start = void 0;
 var readlineSync = require("readline-sync"); //for easier repeated prompts
-var manager_1 = require("manager");
+var manager_1 = require("./manager");
 /**
  * Function to run the UI
  */
@@ -167,7 +167,7 @@ function showModifyAffairMenu(em, affairName) {
         var response = parseInt(readlineSync.question('> '));
         if (response == 1) {
             var newTitle = readlineSync.question('  New title: ');
-            em.modifyAffair(affairName, newTitle);
+            em.modifyAffair(affairName, newTitle, undefined);
         }
         else if (response == 2) {
             var newTime = readlineSync.question('  New date and time (ex: Jan 21 2017 13:00 PST): ');
