@@ -215,7 +215,7 @@ export class AffairManager
         }
     }
 
-    private search(searchName:string, array:Type[]):Type[]{
+    private search(searchName:string, array:any):any{
         let filteredArray = array.filter(function(element: any) {element.getName() == searchName;});
         return filteredArray;  
     }   
