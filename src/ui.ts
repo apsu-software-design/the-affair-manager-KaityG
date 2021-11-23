@@ -181,7 +181,7 @@ function showModifyAffairMenu(em:AffairManager, affairName?:string) {
     let response:number = parseInt(readlineSync.question('> '));
     if(response == 1){
       let newTitle = readlineSync.question('  New title: ');
-      em.modifyAffair(affairName, newTitle);
+      em.modifyAffair(affairName, newTitle, undefined);
     }
     else if(response == 2){
       let newTime = readlineSync.question('  New date and time (ex: Jan 21 2017 13:00 PST): ');
